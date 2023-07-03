@@ -32,19 +32,27 @@ function gameFunction() {
         switch (key) {
             case "w":
             case "ArrowUp":
-                direction = "up";
+                if (direction != "down") {
+                    direction = "up";
+                }
                 break;
             case "s":
             case "ArrowDown":
-                direction = "down";
+                if (direction != "up") {
+                    direction = "down";
+                }
                 break;
             case "a":
             case "ArrowLeft":
-                direction = "left";
+                if (direction != "right") {
+                    direction = "left";
+                }
                 break;
             case "d":
             case "ArrowRight":
-                direction = "right";
+                if (direction != "left") {
+                    direction = "right";
+                }
                 break;
         }
         console.log(key, direction);
