@@ -7,6 +7,17 @@ function initSnake(length, headPosition) {
     });
 }
 
+function initFood(gridLength, snakeSections) {
+    let food;
+    do {
+        food = {
+            x: Math.floor(Math.random() * gridLength),
+            y: Math.floor(Math.random() * gridLength),
+        };
+    } while (snakeSections.includes(food));
+    return food;
+}
+
 function createCellDiv(htmlClassName, position, size) {
     const cell = document.createElement("div");
     cell.className = htmlClassName;
@@ -24,6 +35,7 @@ function gameFunction() {
         x: gridLength / 2,
         y: gridLength / 2,
     });
+    let food = initFood(gridLength, snakeSections);
     let direction = "right";
 
     function handleControls(event) {
@@ -89,6 +101,8 @@ function gameFunction() {
                 createCellDiv("snake-cell", section, cellSize)
             )
         );
+
+        gameDisplay.appendChild(createCellDiv("food-cell", food, cellSize));
     }
 
     function gameLoop() {
