@@ -24,7 +24,31 @@ function gameFunction() {
         x: gridLength / 2,
         y: gridLength / 2,
     });
-    console.log("snake: " + snakeSections);
+    let direction = "right";
+
+    function handleControls(event) {
+        const { key } = event;
+
+        switch (key) {
+            case "w":
+            case "ArrowUp":
+                direction = "up";
+                break;
+            case "s":
+            case "ArrowDown":
+                direction = "down";
+                break;
+            case "a":
+            case "ArrowLeft":
+                direction = "left";
+                break;
+            case "d":
+            case "ArrowRight":
+                direction = "right";
+                break;
+        }
+        console.log(key, direction);
+    }
 
     function render() {
         //clear HTML elements
@@ -41,7 +65,10 @@ function gameFunction() {
         render();
     }
 
+    document.addEventListener("keydown", handleControls);
+
     setInterval(gameLoop, FPS);
+
     console.log("start!");
 }
 

@@ -1,4 +1,5 @@
 body {
+    overflow: hidden;
     background-color: #888;
     display: flex;
     justify-content: center;
