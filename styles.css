@@ -30,8 +30,12 @@ body {
         inset 0 1px 0 gray;
 }
 
-div#running.active {
-    background: radial-gradient(40% 35%, #ccc, #1eff00 60%);
+#led-running.active {
+    background: radial-gradient(40% 35%, #cfc, #0f0 60%);
+}
+
+#led-pause.active {
+    background: radial-gradient(40% 35%, #ffc, #ff0 60%);
 }
 
 #overlay {

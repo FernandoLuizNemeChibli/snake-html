@@ -46,7 +46,17 @@ function gameFunction() {
         if (code == "Space") {
             running = !running;
             const displayWrapper = document.getElementById("overlay");
-            displayWrapper.className = running ? "" : "pause";
+            const ledPause = document.getElementById("led-pause");
+            const ledRunning = document.getElementById("led-running");
+            if (running) {
+                displayWrapper.className = "";
+                ledPause.className = "";
+                ledRunning.className = "active";
+            } else {
+                displayWrapper.className = "pause";
+                ledPause.className = "active";
+                ledRunning.className = "";
+            }
         }
     }
 
