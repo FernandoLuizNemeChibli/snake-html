@@ -17,11 +17,10 @@ body {
     position: absolute;
     width: 400px;
     height: 400px;
-    z-index: 999;
+    z-index: 9;
 }
 
 #overlay.pause {
-    overflow: hidden;
     background: linear-gradient(
         0deg,
         rgba(60, 65, 44, 0.6) 0%,
@@ -53,12 +52,27 @@ body {
 }
 
 #game-display {
+    overflow: hidden;
     position: relative;
     width: 400px;
     height: 400px;
     border: 1em solid #000;
     border-radius: 1em;
     background-color: #fff;
+}
+
+.game-display {
+    position: relative;
+    width: 400px;
+    height: 400px;
+}
+
+.empty-cell {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: #ddd;
+    box-shadow: 0 0 0 2px #fff inset;
 }
 
 .snake-cell {

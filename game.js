@@ -27,7 +27,8 @@ function createCellDiv(htmlClassName, position, size) {
 }
 
 function gameFunction() {
-    const gameDisplay = document.getElementById("game-display");
+    const fixedElements = document.getElementById("fixed-elements");
+    const dynamicElements = document.getElementById("dynamic-elements");
     const FPS = 5;
     const gridLength = 20;
     const cellSize = 20;
@@ -124,15 +125,15 @@ function gameFunction() {
 
     function render() {
         //clear HTML elements
-        gameDisplay.innerHTML = "";
+        dynamicElements.innerHTML = "";
 
         snakeSections.forEach((section) =>
-            gameDisplay.appendChild(
+            dynamicElements.appendChild(
                 createCellDiv("snake-cell", section, cellSize)
             )
         );
 
-        gameDisplay.appendChild(createCellDiv("food-cell", food, cellSize));
+        dynamicElements.appendChild(createCellDiv("food-cell", food, cellSize));
     }
 
     function gameLoop() {
@@ -145,6 +146,14 @@ function gameFunction() {
     document.addEventListener("keydown", handleKeyDown);
 
     setInterval(gameLoop, parseInt(1000 / FPS));
+
+    for (let x = 0; x < gridLength; x++) {
+        for (let y = 0; y < gridLength; y++) {
+            fixedElements.appendChild(
+                createCellDiv("empty-cell", { x, y }, cellSize)
+            );
+        }
+    }
 
     console.log("start!");
 }
