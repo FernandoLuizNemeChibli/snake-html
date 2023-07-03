@@ -30,6 +30,10 @@ body {
         inset 0 1px 0 gray;
 }
 
+div#running.active {
+    background: radial-gradient(40% 35%, #ccc, #1eff00 60%);
+}
+
 #overlay {
     position: absolute;
     width: 400px;
@@ -75,12 +79,6 @@ body {
     height: 400px;
     border: 1em ridge #040504;
     border-radius: 0.5em;
-}
-
-.game-display {
-    position: relative;
-    width: 400px;
-    height: 400px;
 }
 
 .empty-cell {
