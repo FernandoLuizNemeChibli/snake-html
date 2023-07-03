@@ -4,7 +4,7 @@
 
 Welcome to the Snake Game! This is a classic arcade game where you control a snake and try to eat as much food as possible without colliding with the boundaries or your own tail. It's a simple yet addictive game that will test your reflexes and strategic thinking.
 
-![Snake Game Screenshot](screenshot.png)
+![Snake Game Screenshot](screenshots/screenshot2.png)
 
 ## How to Play
 
