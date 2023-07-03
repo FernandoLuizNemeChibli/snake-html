@@ -34,10 +34,10 @@ body {
     width: 20px;
     height: 20px;
     background: linear-gradient(
-        180deg,
+        45deg,
         rgba(34, 193, 195, 1) 0%,
-        rgba(190, 123, 123, 1) 50%,
-        rgba(253, 187, 45, 1) 100%
+        rgba(253, 187, 45, 1) 50%,
+        rgba(190, 123, 123, 1) 80%
     );
     box-shadow: 0 0 0 2px #fff inset;
 }
