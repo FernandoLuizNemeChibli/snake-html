@@ -38,6 +38,16 @@ function gameFunction() {
     let food = initFood(gridLength, snakeSections);
     let direction = "right";
     let lockMovement = false;
+    let running = true;
+
+    function handlePause(event) {
+        const { code } = event;
+        if (code == "Space") {
+            running = !running;
+            const displayWrapper = document.getElementById("overlay");
+            displayWrapper.className = running ? "" : "pause";
+        }
+    }
 
     function handleControls(event) {
         const { key } = event;
@@ -75,6 +85,13 @@ function gameFunction() {
         if (lastDirection != direction) {
             lockMovement = true;
             console.log(key, direction);
+        }
+    }
+
+    function handleKeyDown(event) {
+        handlePause(event);
+        if (running) {
+            handleControls(event);
         }
     }
 
@@ -119,11 +136,13 @@ function gameFunction() {
     }
 
     function gameLoop() {
-        moveSnake();
-        render();
+        if (running) {
+            moveSnake();
+            render();
+        }
     }
 
-    document.addEventListener("keydown", handleControls);
+    document.addEventListener("keydown", handleKeyDown);
 
     setInterval(gameLoop, parseInt(1000 / FPS));
 

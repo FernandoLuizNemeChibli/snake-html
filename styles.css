@@ -13,11 +13,51 @@ body {
     align-items: center;
 }
 
+#overlay {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    z-index: 999;
+}
+
+#overlay.pause {
+    overflow: hidden;
+    background: linear-gradient(
+        0deg,
+        rgba(60, 65, 44, 0.6) 0%,
+        hwb(75 31% 22% / 0.6) 10%,
+        rgba(60, 65, 44, 0.6) 20%,
+        rgba(168, 198, 78, 0.6) 30%,
+        rgba(60, 65, 44, 0.6) 40%,
+        rgba(168, 198, 78, 0.6) 50%,
+        rgba(60, 65, 44, 0.6) 60%,
+        rgba(168, 198, 78, 0.6) 70%,
+        rgba(60, 65, 44, 0.6) 80%,
+        rgba(168, 198, 78, 0.6) 90%,
+        rgba(60, 65, 44, 0.6) 100%
+    );
+    background-size: 400% 400%;
+    animation: PauseFlickering 8s ease infinite;
+}
+
+@keyframes PauseFlickering {
+    0% {
+        background-position: 94% 0%;
+    }
+    50% {
+        background-position: 7% 100%;
+    }
+    100% {
+        background-position: 94% 0%;
+    }
+}
+
 #game-display {
     position: relative;
     width: 400px;
     height: 400px;
-    border: 1px solid #000;
+    border: 1em solid #000;
+    border-radius: 1em;
     background-color: #fff;
 }
 
