@@ -37,9 +37,14 @@ function gameFunction() {
     });
     let food = initFood(gridLength, snakeSections);
     let direction = "right";
+    let lockMovement = false;
 
     function handleControls(event) {
         const { key } = event;
+        if (lockMovement) {
+            return;
+        }
+        let lastDirection = direction.toString();
 
         switch (key) {
             case "w":
@@ -67,7 +72,10 @@ function gameFunction() {
                 }
                 break;
         }
-        console.log(key, direction);
+        if (lastDirection != direction) {
+            lockMovement = true;
+            console.log(key, direction);
+        }
     }
 
     function moveSnake() {
@@ -94,6 +102,7 @@ function gameFunction() {
         } else {
             snakeSections.pop();
         }
+        lockMovement = false;
     }
 
     function render() {
