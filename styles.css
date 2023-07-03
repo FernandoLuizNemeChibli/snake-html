@@ -1,5 +1,5 @@
 body {
-    background-color: gray;
+    background-color: #888;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -17,5 +17,13 @@ body {
     width: 400px;
     height: 400px;
     border: 1px solid #000;
-    background-color: white;
+    background-color: #fff;
+}
+
+.snake-cell {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: #000;
+    border: 2px solid #fff;
 }

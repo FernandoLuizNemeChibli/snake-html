@@ -1,7 +1,7 @@
 function initSnake(length, headPosition) {
-    return [...Aray(length).keys()].map((index) => {
+    return [...Array(length).keys()].map((index) => {
         return {
-            x: headPosition.x + index,
+            x: headPosition.x - index,
             y: headPosition.y,
         };
     });
@@ -24,17 +24,34 @@ function gameFunction() {
         x: gridLength / 2,
         y: gridLength / 2,
     });
+    console.log("snake: " + snakeSections);
 
     function render() {
         //clear HTML elements
         gameDisplay.innerHTML = "";
+
+        snakeSections.forEach((section) =>
+            gameDisplay.appendChild(
+                createCellDiv("snake-cell", section, cellSize)
+            )
+        );
     }
 
     function gameLoop() {
         render();
     }
 
-    const loopInterval = setInterval(gameLoop, FPS);
+    setInterval(gameLoop, FPS);
+    console.log("start!");
 }
 
-document.addEventListener("DOMContentLoaded", gameFunction);
+if (document.readyState != "loading") {
+    console.log("document ready");
+    gameFunction();
+} else {
+    console.log("document not ready");
+    document.addEventListener("DOMContentLoaded", () => {
+        console.log("event called");
+        gameFunction();
+    });
+}
