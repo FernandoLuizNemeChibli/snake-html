@@ -89,7 +89,11 @@ function gameFunction() {
         }
 
         snakeSections.unshift(head);
-        snakeSections.pop();
+        if (head.x == food.x && head.y == food.y) {
+            food = initFood(gridLength, snakeSections);
+        } else {
+            snakeSections.pop();
+        }
     }
 
     function render() {
