@@ -7,6 +7,14 @@ function initSnake(length, headPosition) {
     });
 }
 
+function createCellDiv(htmlClassName, position, size) {
+    const cell = document.createElement("div");
+    cell.className = htmlClassName;
+    cell.style.left = position.x * size + "px";
+    cell.style.top = position.y * size + "px";
+    return cell;
+}
+
 function gameFunction() {
     const gameDisplay = document.getElementById("game-display");
     const FPS = parseInt(1000 / 30);
