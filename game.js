@@ -17,7 +17,7 @@ function createCellDiv(htmlClassName, position, size) {
 
 function gameFunction() {
     const gameDisplay = document.getElementById("game-display");
-    const FPS = parseInt(1000 / 30);
+    const FPS = 5;
     const gridLength = 20;
     const cellSize = 20;
     let snakeSections = initSnake(5, {
@@ -50,6 +50,28 @@ function gameFunction() {
         console.log(key, direction);
     }
 
+    function moveSnake() {
+        const head = { ...snakeSections[0] };
+
+        switch (direction) {
+            case "up":
+                head.y--;
+                break;
+            case "down":
+                head.y++;
+                break;
+            case "left":
+                head.x--;
+                break;
+            case "right":
+                head.x++;
+                break;
+        }
+
+        snakeSections.unshift(head);
+        snakeSections.pop();
+    }
+
     function render() {
         //clear HTML elements
         gameDisplay.innerHTML = "";
@@ -62,12 +84,13 @@ function gameFunction() {
     }
 
     function gameLoop() {
+        moveSnake();
         render();
     }
 
     document.addEventListener("keydown", handleControls);
 
-    setInterval(gameLoop, FPS);
+    setInterval(gameLoop, parseInt(1000 / FPS));
 
     console.log("start!");
 }
