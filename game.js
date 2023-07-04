@@ -50,6 +50,7 @@ function createCellDiv(htmlClassName, position, size) {
 }
 
 function gameFunction() {
+    const displayWrapper = document.getElementById("overlay");
     const fixedElements = document.getElementById("fixed-elements");
     const dynamicElements = document.getElementById("dynamic-elements");
     const currentScore = document.getElementById("current-score");
@@ -68,11 +69,46 @@ function gameFunction() {
     let running = true;
     let gameOver = false;
     let score = 0;
+    currentScore.innerHTML = "00000";
+    let reset = false;
+
+    function createButtons() {
+        const resetButton = document.getElementById("reset-button");
+        const pauseButton = document.getElementById("pause-button");
+        resetButton.onclick = resetGame;
+        pauseButton.onclick = pauseGame;
+    }
+
+    function pauseGame() {
+        running = !running;
+        const ledPause = document.getElementById("led-pause");
+        const ledRunning = document.getElementById("led-running");
+        if (running) {
+            displayWrapper.className = "";
+            ledPause.className = "";
+            ledRunning.className = "active";
+        } else {
+            displayWrapper.className = "pause";
+            ledPause.className = "active";
+            ledRunning.className = "";
+        }
+    }
+
+    function resetGame() {
+        reset = true;
+        const displayWrapper = document.getElementById("overlay");
+        const ledGameOver = document.getElementById("led-game-over");
+        const ledPause = document.getElementById("led-pause");
+        const ledRunning = document.getElementById("led-running");
+        displayWrapper.className = "reset";
+        ledGameOver.className = "";
+        ledPause.className = "";
+        ledRunning.className = "active";
+    }
 
     function setGameOver() {
         gameOver = true;
         running = false;
-        const displayWrapper = document.getElementById("overlay");
         const ledGameOver = document.getElementById("led-game-over");
         const ledPause = document.getElementById("led-pause");
         const ledRunning = document.getElementById("led-running");
@@ -110,22 +146,17 @@ function gameFunction() {
         food = initFood(gridLength, snakeSections);
     }
 
+    function handleReset(event) {
+        const { code } = event;
+        if (code == "Escape") {
+            resetGame();
+        }
+    }
+
     function handlePause(event) {
         const { code } = event;
         if (code == "Space") {
-            running = !running;
-            const displayWrapper = document.getElementById("overlay");
-            const ledPause = document.getElementById("led-pause");
-            const ledRunning = document.getElementById("led-running");
-            if (running) {
-                displayWrapper.className = "";
-                ledPause.className = "";
-                ledRunning.className = "active";
-            } else {
-                displayWrapper.className = "pause";
-                ledPause.className = "active";
-                ledRunning.className = "";
-            }
+            pauseGame();
         }
     }
 
@@ -169,6 +200,7 @@ function gameFunction() {
     }
 
     function handleKeyDown(event) {
+        handleReset(event);
         if (!gameOver) {
             handlePause(event);
             if (running) {
@@ -248,12 +280,16 @@ function gameFunction() {
             moveSnake();
             render();
         }
+        if (reset) {
+            console.log("reset");
+            setTimeout(gameFunction, 500);
+            reset = false;
+            return;
+        }
         setTimeout(gameLoop, parseInt(1000 / (FPS + increasedFPS)));
     }
 
     document.addEventListener("keydown", handleKeyDown);
-
-    setTimeout(gameLoop, parseInt(1000 / (FPS + increasedFPS)));
 
     for (let x = 0; x < gridLength; x++) {
         for (let y = 0; y < gridLength; y++) {
@@ -263,7 +299,10 @@ function gameFunction() {
         }
     }
 
+    displayWrapper.className = "";
     console.log("start!");
+    createButtons();
+    gameLoop();
 }
 
 if (document.readyState != "loading") {

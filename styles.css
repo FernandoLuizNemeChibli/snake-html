@@ -96,22 +96,29 @@ body {
 }
 
 #overlay.game-over {
+    background: radial-gradient(
+        40% 35%,
+        rgba(199, 79, 79, 0.6),
+        rgba(65, 44, 44, 0.6) 140%
+    );
+}
+#overlay.reset {
     background: linear-gradient(
-        0deg,
-        rgba(65, 44, 44, 0.6) 0%,
-        rgba(199, 79, 79, 0.6) 10%,
-        rgba(65, 44, 44, 0.6) 20%,
-        rgba(199, 79, 79, 0.6) 30%,
-        rgba(65, 44, 44, 0.6) 40%,
-        rgba(199, 79, 79, 0.6) 50%,
-        rgba(65, 44, 44, 0.6) 60%,
-        rgba(199, 79, 79, 0.6) 70%,
-        rgba(65, 44, 44, 0.6) 80%,
-        rgba(199, 79, 79, 0.6) 90%,
-        rgba(65, 44, 44, 0.6) 100%
+        45deg,
+        rgba(65, 65, 65, 0.6) 0%,
+        rgba(206, 206, 206, 0.6) 10%,
+        rgba(65, 65, 65, 0.6) 20%,
+        rgba(206, 206, 206, 0.6) 30%,
+        rgba(65, 65, 65, 0.6) 40%,
+        rgba(206, 206, 206, 0.6) 50%,
+        rgba(65, 65, 65, 0.6) 60%,
+        rgba(206, 206, 206, 0.6) 70%,
+        rgba(65, 65, 65, 0.6) 80%,
+        rgba(206, 206, 206, 0.6) 90%,
+        rgba(65, 65, 65, 0.6) 100%
     );
     background-size: 400% 400%;
-    animation: PauseFlickering 8s ease infinite;
+    animation: PauseFlickering 1s ease infinite;
 }
 
 @keyframes PauseFlickering {
@@ -213,4 +220,35 @@ body {
     height: 20px;
     background-color: #0ff;
     box-shadow: 0 0 0 2px #aff inset;
+}
+
+#button-panel {
+    display: flex;
+    justify-content: space-around;
+    width: 400px;
+    padding-top: 20px;
+}
+
+#button-panel > button {
+    outline: none;
+    background: #332;
+    border-radius: 12px;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    outline-offset: 4px;
+}
+
+.button-label {
+    display: block;
+    padding: 12px 18px;
+    border-radius: 12px;
+    font-size: 1.25rem;
+    background: #776;
+    color: white;
+    transform: translateY(-6px);
+}
+
+#button-panel > button:active .button-label {
+    transform: translateY(-2px);
 }
