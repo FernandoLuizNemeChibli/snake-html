@@ -40,6 +40,18 @@ function gameFunction() {
     let direction = "right";
     let lockMovement = false;
     let running = true;
+    let gameOver = false;
+
+    function setGameOver() {
+        gameOver = true;
+        running = false;
+        const ledGameOver = document.getElementById("led-game-over");
+        const ledPause = document.getElementById("led-pause");
+        const ledRunning = document.getElementById("led-running");
+        ledGameOver.className = "active";
+        ledPause.className = "";
+        ledRunning.className = "";
+    }
 
     function handlePause(event) {
         const { code } = event;
@@ -100,9 +112,11 @@ function gameFunction() {
     }
 
     function handleKeyDown(event) {
-        handlePause(event);
-        if (running) {
-            handleControls(event);
+        if (!gameOver) {
+            handlePause(event);
+            if (running) {
+                handleControls(event);
+            }
         }
     }
 
@@ -146,10 +160,31 @@ function gameFunction() {
         dynamicElements.appendChild(createCellDiv("food-cell", food, cellSize));
     }
 
+    function handleCollisions() {
+        const snakeCopy = [...snakeSections];
+        const head = snakeCopy.shift();
+        if (
+            head.x >= gridLength - 1 ||
+            head.y >= gridLength - 1 ||
+            head.x <= 0 ||
+            head.y <= 0
+        ) {
+            console.log("outbounds");
+            setGameOver();
+        }
+        snakeCopy.forEach((section) => {
+            if (head.x == section.x && head.y == section.y) {
+                console.log("itself");
+                setGameOver();
+            }
+        });
+    }
+
     function gameLoop() {
         if (running) {
             moveSnake();
             render();
+            handleCollisions();
         }
     }
 

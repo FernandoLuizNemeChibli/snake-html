@@ -38,6 +38,10 @@ body {
     background: radial-gradient(40% 35%, #ffc, #ff0 60%);
 }
 
+#led-game-over.active {
+    background: radial-gradient(40% 35%, #ffc, #f00 60%);
+}
+
 #overlay {
     position: absolute;
     width: 400px;
