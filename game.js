@@ -52,6 +52,7 @@ function createCellDiv(htmlClassName, position, size) {
 function gameFunction() {
     const fixedElements = document.getElementById("fixed-elements");
     const dynamicElements = document.getElementById("dynamic-elements");
+    const currentScore = document.getElementById("current-score");
     const FPS = 5;
     let increasedFPS = 2;
     const gridLength = 20;
@@ -66,6 +67,7 @@ function gameFunction() {
     let lockMovement = false;
     let running = true;
     let gameOver = false;
+    let score = 0;
 
     function setGameOver() {
         gameOver = true;
@@ -78,6 +80,12 @@ function gameFunction() {
         ledGameOver.className = "active";
         ledPause.className = "";
         ledRunning.className = "";
+    }
+
+    function changeCurrentScore(entryValue) {
+        score += entryValue;
+        const strScore = "0000" + score;
+        currentScore.innerHTML = strScore.substring(strScore.length - 5);
     }
 
     function changeGameSpeed(entryValue) {
@@ -96,6 +104,7 @@ function gameFunction() {
         console.log(foodStats.speed, foodType);
 
         changeGameSpeed(foodStats.speed);
+        changeCurrentScore(foodStats.score);
 
         foodType = foodKeys[Math.floor(Math.random() * foodKeys.length)];
         food = initFood(gridLength, snakeSections);
