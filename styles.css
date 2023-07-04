@@ -31,6 +31,10 @@ body {
         0px -0.28em 0px 0px inset darkslategray;
 }
 
+#score-panel > #record-score {
+    background-color: rgba(169, 199, 79, 0.6);
+}
+
 #display-wrapper {
     display: flex;
     justify-content: center;
