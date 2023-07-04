@@ -40,7 +40,8 @@ Welcome to the Snake Game! This is a classic arcade game where you control a sna
 
 -   Add button to reset game.
 -   Add random obstacles.
--   Implement a scoring system to keep track of the player's score.
+-   Implement record score for the current session.
+-   Persist record score on local database.
 -   Introduce power-ups that provide temporary advantages or challenges.
 -   Implement multiplayer functionality to compete with friends.
 
