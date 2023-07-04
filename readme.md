@@ -17,6 +17,7 @@ Welcome to the Snake Game! This is a classic arcade game where you control a sna
 7. Each time the snake eats food, it will grow longer.
 8. The game ends when the snake crashes into a boundary or itself.
 9. When the game is over, a red LED will be activated.
+10. The player's current score is tracked in the top left LED Display.
 
 ## Food Types
 
