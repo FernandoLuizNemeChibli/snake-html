@@ -45,9 +45,11 @@ function gameFunction() {
     function setGameOver() {
         gameOver = true;
         running = false;
+        const displayWrapper = document.getElementById("overlay");
         const ledGameOver = document.getElementById("led-game-over");
         const ledPause = document.getElementById("led-pause");
         const ledRunning = document.getElementById("led-running");
+        displayWrapper.className = "game-over";
         ledGameOver.className = "active";
         ledPause.className = "";
         ledRunning.className = "";
