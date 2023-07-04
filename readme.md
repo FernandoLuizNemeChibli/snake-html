@@ -18,6 +18,7 @@ Welcome to the Snake Game! This is a classic arcade game where you control a sna
 8. The game ends when the snake crashes into a boundary or itself.
 9. When the game is over, a red LED will be activated.
 10. The player's current score is tracked in the top left LED Display.
+11. The session's maximum score is tracked in the top right LED Display.
 
 ## Food Types
 
@@ -39,9 +40,7 @@ Welcome to the Snake Game! This is a classic arcade game where you control a sna
 
 ## TODO List
 
--   Add button to reset game.
 -   Add random obstacles.
--   Implement record score for the current session.
 -   Persist record score on local database.
 -   Introduce power-ups that provide temporary advantages or challenges.
 -   Implement multiplayer functionality to compete with friends.

@@ -21,6 +21,19 @@ const FOOD_TYPES = {
     },
 };
 
+let recordScore = 0;
+
+function setNewScore(newScore) {
+    if (newScore > recordScore) {
+        const recordScoreDisplay = document.getElementById("record-score");
+        recordScore = newScore;
+        let strRecordScore = "00000" + recordScore;
+        recordScoreDisplay.innerHTML = strRecordScore.substring(
+            strRecordScore.length - 5
+        );
+    }
+}
+
 function initSnake(length, headPosition) {
     return [...Array(length).keys()].map((index) => {
         return {
@@ -116,6 +129,7 @@ function gameFunction() {
         ledGameOver.className = "active";
         ledPause.className = "";
         ledRunning.className = "";
+        setNewScore(score);
     }
 
     function changeCurrentScore(entryValue) {
