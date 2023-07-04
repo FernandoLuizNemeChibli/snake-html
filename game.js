@@ -138,7 +138,13 @@ function gameFunction() {
                 break;
         }
 
+        handleCollisions(head, snakeSections);
+        if (gameOver) {
+            return;
+        }
+
         snakeSections.unshift(head);
+
         if (head.x == food.x && head.y == food.y) {
             food = initFood(gridLength, snakeSections);
         } else {
@@ -160,19 +166,17 @@ function gameFunction() {
         dynamicElements.appendChild(createCellDiv("food-cell", food, cellSize));
     }
 
-    function handleCollisions() {
-        const snakeCopy = [...snakeSections];
-        const head = snakeCopy.shift();
+    function handleCollisions(head) {
         if (
-            head.x >= gridLength - 1 ||
-            head.y >= gridLength - 1 ||
-            head.x <= 0 ||
-            head.y <= 0
+            head.x >= gridLength ||
+            head.y >= gridLength ||
+            head.x < 0 ||
+            head.y < 0
         ) {
             console.log("outbounds");
             setGameOver();
         }
-        snakeCopy.forEach((section) => {
+        snakeSections.forEach((section) => {
             if (head.x == section.x && head.y == section.y) {
                 console.log("itself");
                 setGameOver();
@@ -184,7 +188,6 @@ function gameFunction() {
         if (running) {
             moveSnake();
             render();
-            handleCollisions();
         }
     }
 
