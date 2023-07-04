@@ -1,3 +1,26 @@
+const FOOD_TYPES = {
+    normal: {
+        speed: 0,
+        score: 2,
+    },
+    hot: {
+        speed: +1,
+        score: 3,
+    },
+    chill: {
+        speed: -1,
+        score: 1,
+    },
+    superhot: {
+        speed: +15,
+        score: 5,
+    },
+    superchill: {
+        speed: -15,
+        score: 0,
+    },
+};
+
 function initSnake(length, headPosition) {
     return [...Array(length).keys()].map((index) => {
         return {
@@ -30,6 +53,7 @@ function gameFunction() {
     const fixedElements = document.getElementById("fixed-elements");
     const dynamicElements = document.getElementById("dynamic-elements");
     const FPS = 5;
+    let increasedFPS = 2;
     const gridLength = 20;
     const cellSize = 20;
     let snakeSections = initSnake(5, {
@@ -37,6 +61,7 @@ function gameFunction() {
         y: gridLength / 2,
     });
     let food = initFood(gridLength, snakeSections);
+    let foodType = "normal";
     let direction = "right";
     let lockMovement = false;
     let running = true;
@@ -53,6 +78,27 @@ function gameFunction() {
         ledGameOver.className = "active";
         ledPause.className = "";
         ledRunning.className = "";
+    }
+
+    function changeGameSpeed(entryValue) {
+        if (increasedFPS + entryValue < 0) {
+            increasedFPS = 0;
+        } else if (increasedFPS + entryValue > 15) {
+            increasedFPS = 15;
+        } else {
+            increasedFPS += entryValue;
+        }
+    }
+
+    function eatFruit() {
+        const foodStats = FOOD_TYPES[foodType];
+        const foodKeys = Object.keys(FOOD_TYPES);
+        console.log(foodStats.speed, foodType);
+
+        changeGameSpeed(foodStats.speed);
+
+        foodType = foodKeys[Math.floor(Math.random() * foodKeys.length)];
+        food = initFood(gridLength, snakeSections);
     }
 
     function handlePause(event) {
@@ -140,7 +186,7 @@ function gameFunction() {
                 break;
         }
 
-        handleCollisions(head, snakeSections);
+        handleCollisions(head);
         if (gameOver) {
             return;
         }
@@ -148,7 +194,7 @@ function gameFunction() {
         snakeSections.unshift(head);
 
         if (head.x == food.x && head.y == food.y) {
-            food = initFood(gridLength, snakeSections);
+            eatFruit();
         } else {
             snakeSections.pop();
         }
@@ -165,7 +211,9 @@ function gameFunction() {
             )
         );
 
-        dynamicElements.appendChild(createCellDiv("food-cell", food, cellSize));
+        dynamicElements.appendChild(
+            createCellDiv(`${foodType}-food-cell`, food, cellSize)
+        );
     }
 
     function handleCollisions(head) {
@@ -191,11 +239,12 @@ function gameFunction() {
             moveSnake();
             render();
         }
+        setTimeout(gameLoop, parseInt(1000 / (FPS + increasedFPS)));
     }
 
     document.addEventListener("keydown", handleKeyDown);
 
-    setInterval(gameLoop, parseInt(1000 / FPS));
+    setTimeout(gameLoop, parseInt(1000 / (FPS + increasedFPS)));
 
     for (let x = 0; x < gridLength; x++) {
         for (let y = 0; y < gridLength; y++) {
