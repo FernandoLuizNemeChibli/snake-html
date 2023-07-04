@@ -20,7 +20,8 @@ Welcome to the Snake Game! This is a classic arcade game where you control a sna
 
 ## TODO List
 
--   Add different levels of difficulty with faster snake speed or additional obstacles.
+-   Add random obstacles.
+-   Add fruits that slows or accelerates the snake.
 -   Implement a scoring system to keep track of the player's score.
 -   Introduce power-ups that provide temporary advantages or challenges.
 -   Implement multiplayer functionality to compete with friends.
