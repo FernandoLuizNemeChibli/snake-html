@@ -252,3 +252,46 @@ body {
 #button-panel > button:active .button-label {
     transform: translateY(-2px);
 }
+
+#control-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 400px;
+    padding-top: 40px;
+}
+
+#horizontal-arrows {
+    display: flex;
+    width: calc(48px * 3);
+    justify-content: space-between;
+    align-items: center;
+}
+
+#control-panel > button,
+#control-panel > * > button {
+    outline: none;
+    background: #332;
+    border-radius: 40%;
+    width: 48px;
+    height: 48px;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    outline-offset: 4px;
+}
+
+.arrow-label {
+    display: block;
+    padding: 12px 0px;
+    border-radius: 40%;
+    font-size: 1.25rem;
+    background: #776;
+    color: white;
+    transform: translateY(-6px);
+}
+
+#control-panel > button:active .arrow-label,
+#control-panel > * > button:active .arrow-label {
+    transform: translateY(-2px);
+}

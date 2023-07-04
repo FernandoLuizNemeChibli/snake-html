@@ -88,6 +88,22 @@ function gameFunction() {
     function createButtons() {
         const resetButton = document.getElementById("reset-button");
         const pauseButton = document.getElementById("pause-button");
+        const upArrow = document.getElementById("up-arrow");
+        const leftArrow = document.getElementById("left-arrow");
+        const rightArrow = document.getElementById("right-arrow");
+        const downArrow = document.getElementById("down-arrow");
+        upArrow.onclick = () => {
+            direction = "up";
+        };
+        leftArrow.onclick = () => {
+            direction = "left";
+        };
+        rightArrow.onclick = () => {
+            direction = "right";
+        };
+        downArrow.onclick = () => {
+            direction = "down";
+        };
         resetButton.onclick = resetGame;
         pauseButton.onclick = pauseGame;
     }
