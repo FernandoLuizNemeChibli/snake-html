@@ -1,3 +1,8 @@
+@font-face {
+    font-family: "ledFont";
+    src: url("./fonts/14\ Segment\ LED\ Regular.ttf");
+}
+
 body {
     overflow: hidden;
     background-color: #888;
@@ -6,6 +11,24 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+}
+
+#score-panel {
+    display: flex;
+    justify-content: space-around;
+    width: 400px;
+    padding-bottom: 20px;
+}
+
+#score-panel > div {
+    font-family: "ledFont";
+    font-size: 3em;
+    color: darkslategray;
+    background-color: #0f0;
+    border: 0.2em double darkslategray;
+    border-radius: 0.25em;
+    box-shadow: 0px 0.22em 0px 0px inset darkslategray,
+        0px -0.28em 0px 0px inset darkslategray;
 }
 
 #display-wrapper {
