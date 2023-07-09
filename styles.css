@@ -3,6 +3,20 @@
     src: url("./fonts/14\ Segment\ LED\ Regular.ttf");
 }
 
+body,
+html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+.container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 body {
     overflow: hidden;
     background-color: #888;
@@ -10,7 +24,6 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
 }
 
 #score-panel {
