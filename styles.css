@@ -2,6 +2,10 @@
     font-family: "ledFont";
     src: url("./fonts/14\ Segment\ LED\ Regular.ttf");
 }
+@font-face {
+    font-family: "mmx2010";
+    src: url("./fonts/mmx2010.ttf");
+}
 
 body,
 html {
@@ -24,6 +28,21 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.game-title {
+    font-family: "mmx2010";
+    font-size: 24px;
+    background: radial-gradient(
+        circle,
+        rgba(47, 79, 79, 1) 0%,
+        black 35%,
+        rgba(47, 79, 79, 1) 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: center;
+    padding-top: 10px;
 }
 
 #score-panel {
@@ -271,7 +290,7 @@ body {
     flex-direction: column;
     align-items: center;
     width: 400px;
-    padding-top: 40px;
+    padding: 15px;
 }
 
 #horizontal-arrows {
